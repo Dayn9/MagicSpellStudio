@@ -20,6 +20,8 @@ public class Pickup : MonoBehaviour
     private Vector3 endLerp = new Vector3();
     private WaitForFixedUpdate wait = new WaitForFixedUpdate();
 
+    public Player PlayerType { get; set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,7 +42,7 @@ public class Pickup : MonoBehaviour
         rb.useGravity = true;
         transform.SetParent(null);
 
-        if (cauldronVisible)
+        if (cauldronVisible && this != cauldron)
         {
             toCauldron = true;
             StartCoroutine(PickupLerp());
@@ -65,7 +67,6 @@ public class Pickup : MonoBehaviour
             lerpDeltaTime += Time.deltaTime;
         }
         gameObject.transform.position = endLerp;
-        Destroy(gameObject);
     }
 
 }
