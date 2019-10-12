@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private Coroutine lerpCoroutine = null;
 
+    private List<GameObject> deletedObjectsToRemove = new List<GameObject>();
+
     private MeshFilter model;
     [SerializeField] private Mesh Mup = null;
     [SerializeField] private Mesh Mdown = null;
@@ -148,14 +150,27 @@ public class PlayerController : MonoBehaviour
 
         foreach(GameObject g in possiblePickups)
         {
-            float dist = (g.transform.position - transform.position).sqrMagnitude;
-
-            if (dist < closestDistance)
+            if(g == null)
             {
-                closest = g;
-                closestDistance = dist;
+                deletedObjectsToRemove.Add(g);
+            }
+            else
+            {
+                float dist = (g.transform.position - transform.position).sqrMagnitude;
+
+                if (dist < closestDistance)
+                {
+                    closest = g;
+                    closestDistance = dist;
+                }
             }
         }
+
+        for(int i = 0; i < deletedObjectsToRemove.Count; i++)
+        {
+            possiblePickups.Remove(deletedObjectsToRemove[i]);
+        }
+        deletedObjectsToRemove.Clear();
 
         if(closest != null)
         {
@@ -192,13 +207,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.tag.Equals("Player"))
-        {
-            hit.gameObject.GetComponent<PlayerController>().ApplyForce(moveDirection * Time.deltaTime);
-        }
-    }
     private IEnumerator PickupLerp()
     {
         lerpDeltaTime = 0;
