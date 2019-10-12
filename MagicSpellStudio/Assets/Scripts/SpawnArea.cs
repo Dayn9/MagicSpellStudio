@@ -5,12 +5,16 @@ using UnityEngine;
 public class SpawnArea : MonoBehaviour
 {
     public GameObject spawnObject;
+    public Player playerType;
     //private float timeBetweenSpawns = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(spawnObject, gameObject.transform);
+        GameObject obj = Instantiate(spawnObject, gameObject.transform);
+        Pickup pickup = obj.GetComponent<Pickup>();
+
+        pickup.PlayerType = playerType;
     }
 
     // Update is called once per frame

@@ -134,6 +134,7 @@ public class PlayerController : MonoBehaviour
             possiblePickups.Remove(pickup);
             holding = false;
             pickup = null;
+
             StopCoroutine(lerpCoroutine);
 
             model.mesh = Mdown;
