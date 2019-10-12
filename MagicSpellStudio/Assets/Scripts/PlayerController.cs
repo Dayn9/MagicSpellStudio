@@ -28,11 +28,18 @@ public class PlayerController : MonoBehaviour
     private GameObject pickup;
     private bool cauldronInBounds = false;
 
+    private MeshFilter model;
+    [SerializeField] private Mesh Mup;
+    [SerializeField] private Mesh Mdown;
+
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
 
         possiblePickups = new List<GameObject>();
+
+        model = GetComponentInChildren<MeshFilter>();
 
         switch (player)
         {
@@ -85,11 +92,14 @@ public class PlayerController : MonoBehaviour
             trueDirection = -Vector3.right;
         }
 
+        model.transform.LookAt(gameObject.transform.position + new Vector3(moveDirection.z, 0, moveDirection.x));
+
         if (Input.GetKeyDown(action))
         {
             if (holding)
             {
                 Throw();
+                
             }
             else
             {
@@ -119,6 +129,8 @@ public class PlayerController : MonoBehaviour
 
             holding = false;
             pickup = null;
+
+            model.mesh = Mdown;
         }
     }
 
@@ -143,6 +155,8 @@ public class PlayerController : MonoBehaviour
             holding = true;
             pickup = closest;
             pickup.GetComponent<Pickup>().Pick(transform);
+
+            model.mesh = Mup;
         }
     }
 
