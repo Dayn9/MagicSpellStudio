@@ -27,6 +27,15 @@ public class PlayerController : MonoBehaviour
 
     private GameObject pickup;
     private bool cauldronInBounds = false;
+    private Pickup pickupScript;
+    private Rigidbody pickupRigidbody;
+
+    private Vector3 pickupStartPos;
+    private Vector3 pickupEndPos;
+    private float lerpDeltaTime = 0;
+    private float lerpTime = 0.15f;
+    private WaitForFixedUpdate wait = new WaitForFixedUpdate();
+    private Coroutine lerpCoroutine = null;
 
     private MeshFilter model;
     [SerializeField] private Mesh Mup;
@@ -114,21 +123,19 @@ public class PlayerController : MonoBehaviour
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
-
-        if (holding && pickup != null)
-        {
-            pickup.transform.localPosition = Vector3.Lerp(pickup.transform.localPosition, Vector3.up * 2, 0.3f);
-        }
     }
 
     public void Throw()
     {
         if(holding && pickup != null)
         {
+            pickupRigidbody.isKinematic = false;
+            pickupScript.Throw(trueDirection);
             pickup.GetComponent<Pickup>().Throw(trueDirection, cauldronInBounds);
 
             holding = false;
             pickup = null;
+            StopCoroutine(lerpCoroutine);
 
             model.mesh = Mdown;
         }
@@ -154,9 +161,10 @@ public class PlayerController : MonoBehaviour
         {
             holding = true;
             pickup = closest;
-            pickup.GetComponent<Pickup>().Pick(transform);
-
             model.mesh = Mup;
+            pickupScript = pickup.GetComponent<Pickup>();
+            pickupScript.Pick(transform);
+            lerpCoroutine = StartCoroutine(PickupLerp());
         }
     }
 
@@ -190,5 +198,28 @@ public class PlayerController : MonoBehaviour
         {
             hit.gameObject.GetComponent<PlayerController>().ApplyForce(moveDirection * Time.deltaTime);
         }
+    }
+    private IEnumerator PickupLerp()
+    {
+        lerpDeltaTime = 0;
+        pickupStartPos = pickup.transform.localPosition;
+        pickupRigidbody = pickup.GetComponent<Rigidbody>();
+        pickupRigidbody.isKinematic = true;
+        BoxCollider pickupCol = pickup.GetComponent<BoxCollider>();
+        if(pickupCol != null)
+        {
+            pickupEndPos = new Vector3(0, 1 - pickupCol.center.y + (pickupCol.size.y / 2), 0);
+        }
+        else
+        {
+            pickupEndPos = Vector3.up * 2;
+        }
+        while(lerpDeltaTime < lerpTime)
+        {
+            pickup.transform.localPosition = Vector3.Lerp(pickupStartPos, pickupEndPos, lerpDeltaTime / lerpTime);
+            yield return wait;
+            lerpDeltaTime += Time.deltaTime;
+        }
+        pickup.transform.localPosition = pickupEndPos;
     }
 }
