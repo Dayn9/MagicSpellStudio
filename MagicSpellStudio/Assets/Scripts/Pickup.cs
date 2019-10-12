@@ -6,7 +6,7 @@ public class Pickup : MonoBehaviour
 {
     private Rigidbody rb;
 
-    private const int throwForce = 6;
+    private const int throwForce = 8;
 
     protected static Cauldron cauldron;
 
@@ -14,17 +14,15 @@ public class Pickup : MonoBehaviour
 
     private bool toCauldron = false;
 
+    private float lerpDeltaTime = 0;
+    private float lerpTime = 0.15f;
+    private Vector3 startLerp = new Vector3();
+    private Vector3 endLerp = new Vector3();
+    private WaitForFixedUpdate wait = new WaitForFixedUpdate();
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        if (toCauldron)
-        {
-            transform.position = Vector3.Lerp(transform.position, cauldron.transform.position, 0.5f);
-        }    
     }
 
     public void Pick(Transform player)
@@ -45,7 +43,7 @@ public class Pickup : MonoBehaviour
         if (cauldronVisible)
         {
             toCauldron = true;
-            rb.AddForce(new Vector3(direction.x, 1, direction.z) * throwForce / rb.mass, ForceMode.Impulse);
+            StartCoroutine(PickupLerp());
         }
         else
         {
@@ -53,6 +51,21 @@ public class Pickup : MonoBehaviour
         }
 
         PickedUp = false;
+    }
+
+    private IEnumerator PickupLerp()
+    {
+        lerpDeltaTime = 0;
+        startLerp = gameObject.transform.position;
+        endLerp = cauldron.transform.position;
+        while (lerpDeltaTime < lerpTime)
+        {
+            gameObject.transform.position = Vector3.Lerp(startLerp, endLerp, lerpDeltaTime / lerpTime);
+            yield return wait;
+            lerpDeltaTime += Time.deltaTime;
+        }
+        gameObject.transform.position = endLerp;
+        Destroy(gameObject);
     }
 
 }
