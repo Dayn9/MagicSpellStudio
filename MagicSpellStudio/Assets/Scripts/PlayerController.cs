@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine lerpCoroutine = null;
 
     private MeshFilter model;
-    [SerializeField] private Mesh Mup;
-    [SerializeField] private Mesh Mdown;
+    [SerializeField] private Mesh Mup = null;
+    [SerializeField] private Mesh Mdown = null;
 
 
     private void Awake()
@@ -130,8 +130,7 @@ public class PlayerController : MonoBehaviour
         if(holding && pickup != null)
         {
             pickupRigidbody.isKinematic = false;
-            pickupScript.Throw(trueDirection);
-            pickup.GetComponent<Pickup>().Throw(trueDirection, cauldronInBounds);
+            pickupScript.Throw(trueDirection, cauldronInBounds);
 
             holding = false;
             pickup = null;
