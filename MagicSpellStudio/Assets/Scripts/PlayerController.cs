@@ -43,6 +43,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Mesh Mup = null;
     [SerializeField] private Mesh Mdown = null;
 
+    public bool Holding
+    {
+        set
+        {
+            holding = value;
+            if (!holding)
+            {
+                StopCoroutine(lerpCoroutine);
+            }
+        }
+    }
+
 
     private void Awake()
     {
@@ -118,10 +130,27 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        moveDirection.x *= speed;
-        moveDirection.z *= speed;
+        if(holding)
+        {
+            moveDirection.x *= speed - pickupScript.Mass;
+            moveDirection.z *= speed - pickupScript.Mass;
+            moveDirection.y -= (gravity + pickupScript.Mass * 10) * Time.deltaTime;
+        }
+        else
+        {
+            moveDirection.x *= speed;
+            moveDirection.z *= speed;
+            moveDirection.y -= gravity * Time.deltaTime;
 
-        moveDirection.y -= gravity * Time.deltaTime;
+            if (pickup != null)
+            {
+                pickup = null;
+                model.mesh = Mdown;
+            }
+        }
+       
+
+        
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
