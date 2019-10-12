@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 trueDirection = Vector3.zero;
 
-    private const float speed = 6.0f;
-    private float gravity = 10.0f;
+    private const float speed = 5.0f;
+    private float gravity = 30.0f;
 
     private KeyCode up;
     private KeyCode down;
@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
 
     private bool holding = false;
     private List<GameObject> possiblePickups;
+
     private GameObject pickup;
+    private bool cauldronInBounds = false;
     private Pickup pickupScript;
     private Rigidbody pickupRigidbody;
 
@@ -72,8 +74,7 @@ public class PlayerController : MonoBehaviour
         if (characterController.isGrounded)
         {
             moveDirection.y = 0;
-        }
-        
+        }        
 
         if (Input.GetKey(up))
         {
@@ -105,7 +106,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        moveDirection *= speed;
+        moveDirection.x *= speed;
+        moveDirection.z *= speed;
 
         moveDirection.y -= gravity * Time.deltaTime;
 
@@ -119,6 +121,8 @@ public class PlayerController : MonoBehaviour
         {
             pickupRigidbody.isKinematic = false;
             pickupScript.Throw(trueDirection);
+            pickup.GetComponent<Pickup>().Throw(trueDirection, cauldronInBounds);
+
             holding = false;
             pickup = null;
             StopCoroutine(lerpCoroutine);
@@ -154,8 +158,12 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Pickup") && !possiblePickups.Contains(other.gameObject))
-        { 
+        {
             possiblePickups.Add(other.gameObject);
+            if(other.gameObject.GetComponent<Cauldron>() != null)
+            {
+                cauldronInBounds = true;
+            }
         }
     }
 
@@ -164,6 +172,10 @@ public class PlayerController : MonoBehaviour
         if (other.tag.Equals("Pickup") && possiblePickups.Contains(other.gameObject))
         {
             possiblePickups.Remove(other.gameObject);
+            if (other.gameObject.GetComponent<Cauldron>() != null)
+            {
+                cauldronInBounds = false;
+            }
         }
     }
 
