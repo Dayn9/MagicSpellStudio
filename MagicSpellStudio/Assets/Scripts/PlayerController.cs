@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 trueDirection = Vector3.zero;
 
-    private const float speed = 6.0f;
-    private float gravity = 10.0f;
+    private const float speed = 5.0f;
+    private float gravity = 30.0f;
 
     private KeyCode up;
     private KeyCode down;
@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
 
     private bool holding = false;
     private List<GameObject> possiblePickups;
+
     private GameObject pickup;
+    private bool cauldronInBounds = false;
     private Pickup pickupScript;
     private Rigidbody pickupRigidbody;
 
@@ -35,11 +37,18 @@ public class PlayerController : MonoBehaviour
     private WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private Coroutine lerpCoroutine = null;
 
+    private MeshFilter model;
+    [SerializeField] private Mesh Mup;
+    [SerializeField] private Mesh Mdown;
+
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
 
         possiblePickups = new List<GameObject>();
+
+        model = GetComponentInChildren<MeshFilter>();
 
         switch (player)
         {
@@ -72,8 +81,7 @@ public class PlayerController : MonoBehaviour
         if (characterController.isGrounded)
         {
             moveDirection.y = 0;
-        }
-        
+        }        
 
         if (Input.GetKey(up))
         {
@@ -93,11 +101,14 @@ public class PlayerController : MonoBehaviour
             trueDirection = -Vector3.right;
         }
 
+        model.transform.LookAt(gameObject.transform.position + new Vector3(moveDirection.z, 0, moveDirection.x));
+
         if (Input.GetKeyDown(action))
         {
             if (holding)
             {
                 Throw();
+                
             }
             else
             {
@@ -105,7 +116,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        moveDirection *= speed;
+        moveDirection.x *= speed;
+        moveDirection.z *= speed;
 
         moveDirection.y -= gravity * Time.deltaTime;
 
@@ -119,9 +131,13 @@ public class PlayerController : MonoBehaviour
         {
             pickupRigidbody.isKinematic = false;
             pickupScript.Throw(trueDirection);
+            pickup.GetComponent<Pickup>().Throw(trueDirection, cauldronInBounds);
+
             holding = false;
             pickup = null;
             StopCoroutine(lerpCoroutine);
+
+            model.mesh = Mdown;
         }
     }
 
@@ -145,6 +161,7 @@ public class PlayerController : MonoBehaviour
         {
             holding = true;
             pickup = closest;
+            model.mesh = Mup;
             pickupScript = pickup.GetComponent<Pickup>();
             pickupScript.Pick(transform);
             lerpCoroutine = StartCoroutine(PickupLerp());
@@ -154,8 +171,12 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Pickup") && !possiblePickups.Contains(other.gameObject))
-        { 
+        {
             possiblePickups.Add(other.gameObject);
+            if(other.gameObject.GetComponent<Cauldron>() != null)
+            {
+                cauldronInBounds = true;
+            }
         }
     }
 
@@ -164,6 +185,10 @@ public class PlayerController : MonoBehaviour
         if (other.tag.Equals("Pickup") && possiblePickups.Contains(other.gameObject))
         {
             possiblePickups.Remove(other.gameObject);
+            if (other.gameObject.GetComponent<Cauldron>() != null)
+            {
+                cauldronInBounds = false;
+            }
         }
     }
 
