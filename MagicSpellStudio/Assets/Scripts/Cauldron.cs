@@ -1,15 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cauldron : Pickup
 {
     int red = 0;
     int blue = 0;
 
+    [SerializeField] private Slider ratioSlider;
+    private float targetRatio;
+
     private void Start()
     {
         cauldron = this;
+        ratioSlider.value = 0.5f;
+        targetRatio = 0.5f;
+    }
+
+    private void Update()
+    {
+        ratioSlider.value = Mathf.Lerp(ratioSlider.value, targetRatio, 0.3f);
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,7 +41,8 @@ public class Cauldron : Pickup
                     break;
             }
 
-            Debug.Log(red + " " + blue);
+            //Debug.Log(red + " " + blue);
+            targetRatio = (red * 1.0f) / (red + blue);
 
             Destroy(collision.gameObject);
         }
