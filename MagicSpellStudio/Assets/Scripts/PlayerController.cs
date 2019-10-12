@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
             trueDirection = -Vector3.right;
         }
 
-        model.transform.LookAt(gameObject.transform.position + new Vector3(moveDirection.z, 0, moveDirection.x));
+        model.transform.LookAt(gameObject.transform.position + new Vector3(-moveDirection.z, 0, moveDirection.x));
 
         if (Input.GetKeyDown(action))
         {
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             pickupRigidbody.isKinematic = false;
             pickupScript.Throw(trueDirection, cauldronInBounds);
-
+            possiblePickups.Remove(pickup);
             holding = false;
             pickup = null;
             StopCoroutine(lerpCoroutine);
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
         BoxCollider pickupCol = pickup.GetComponent<BoxCollider>();
         if(pickupCol != null)
         {
-            pickupEndPos = new Vector3(0, 1 - pickupCol.center.y + (pickupCol.size.y / 2), 0);
+            pickupEndPos = new Vector3(0, 0.85f - pickupCol.center.y + (pickupCol.size.y / 2), 0);
         }
         else
         {
