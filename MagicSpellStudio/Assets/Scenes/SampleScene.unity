@@ -404,6 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 3316662193205578730, guid: 9bed16731df128942a60fbb0fe0ff611,
     type: 3}
+  playerType: 0
 --- !u!4 &478891560
 Transform:
   m_ObjectHideFlags: 0
@@ -801,6 +802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 231258692053170672, guid: fcd790d708d296e4b867711729ef5a93,
     type: 3}
+  playerType: 1
 --- !u!4 &948942141
 Transform:
   m_ObjectHideFlags: 0
@@ -1064,6 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 3316662193205578730, guid: 9bed16731df128942a60fbb0fe0ff611,
     type: 3}
+  playerType: 0
 --- !u!4 &1085415803
 Transform:
   m_ObjectHideFlags: 0
@@ -1109,6 +1112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 231258692053170672, guid: fcd790d708d296e4b867711729ef5a93,
     type: 3}
+  playerType: 1
 --- !u!4 &1156120003
 Transform:
   m_ObjectHideFlags: 0
@@ -1154,6 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 231258692053170672, guid: fcd790d708d296e4b867711729ef5a93,
     type: 3}
+  playerType: 1
 --- !u!4 &1260136081
 Transform:
   m_ObjectHideFlags: 0
@@ -1698,6 +1703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 3316662193205578730, guid: 9bed16731df128942a60fbb0fe0ff611,
     type: 3}
+  playerType: 0
 --- !u!4 &1489516329
 Transform:
   m_ObjectHideFlags: 0
@@ -1743,6 +1749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 3316662193205578730, guid: 9bed16731df128942a60fbb0fe0ff611,
     type: 3}
+  playerType: 0
 --- !u!4 &1663844852
 Transform:
   m_ObjectHideFlags: 0
@@ -1970,6 +1977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 231258692053170672, guid: fcd790d708d296e4b867711729ef5a93,
     type: 3}
+  playerType: 1
 --- !u!4 &2062985992
 Transform:
   m_ObjectHideFlags: 0
