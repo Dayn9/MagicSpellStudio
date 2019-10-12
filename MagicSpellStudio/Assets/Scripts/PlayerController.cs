@@ -37,11 +37,18 @@ public class PlayerController : MonoBehaviour
     private WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private Coroutine lerpCoroutine = null;
 
+    private MeshFilter model;
+    [SerializeField] private Mesh Mup;
+    [SerializeField] private Mesh Mdown;
+
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
 
         possiblePickups = new List<GameObject>();
+
+        model = GetComponentInChildren<MeshFilter>();
 
         switch (player)
         {
@@ -94,11 +101,14 @@ public class PlayerController : MonoBehaviour
             trueDirection = -Vector3.right;
         }
 
+        model.transform.LookAt(gameObject.transform.position + new Vector3(moveDirection.z, 0, moveDirection.x));
+
         if (Input.GetKeyDown(action))
         {
             if (holding)
             {
                 Throw();
+                
             }
             else
             {
@@ -126,6 +136,8 @@ public class PlayerController : MonoBehaviour
             holding = false;
             pickup = null;
             StopCoroutine(lerpCoroutine);
+
+            model.mesh = Mdown;
         }
     }
 
@@ -149,6 +161,7 @@ public class PlayerController : MonoBehaviour
         {
             holding = true;
             pickup = closest;
+            model.mesh = Mup;
             pickupScript = pickup.GetComponent<Pickup>();
             pickupScript.Pick(transform);
             lerpCoroutine = StartCoroutine(PickupLerp());
