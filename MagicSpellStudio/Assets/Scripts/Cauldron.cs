@@ -8,6 +8,9 @@ public class Cauldron : Pickup
     int red = 0;
     int blue = 0;
 
+    public int Red { get { return red; } }
+    public int Blue { get { return blue; } }
+
     [SerializeField] private Slider ratioSlider;
     private float targetRatio;
 
