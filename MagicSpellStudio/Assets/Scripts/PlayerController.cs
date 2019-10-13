@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(holding)
+        if(holding && pickupScript != null)
         {
             moveDirection.x *= speed - pickupScript.Mass;
             moveDirection.z *= speed - pickupScript.Mass;
@@ -145,7 +145,9 @@ public class PlayerController : MonoBehaviour
             if (pickup != null)
             {
                 pickup = null;
+                pickupScript = null;
                 model.mesh = Mdown;
+                StopCoroutine(lerpCoroutine);
             }
         }
        

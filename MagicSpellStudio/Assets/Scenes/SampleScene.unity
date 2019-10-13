@@ -2471,6 +2471,16 @@ PrefabInstance:
       propertyPath: ratioSlider
       value: 
       objectReference: {fileID: 73326491}
+    - target: {fileID: 436991656197287139, guid: b8d6debf8a4879b4d8ba0087afef500d,
+        type: 3}
+      propertyPath: cauldronMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 06fd0b43982c27741986575f37041d3a, type: 2}
+    - target: {fileID: 6979894675167329329, guid: b8d6debf8a4879b4d8ba0087afef500d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06fd0b43982c27741986575f37041d3a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8d6debf8a4879b4d8ba0087afef500d, type: 3}
 --- !u!1001 &5237668930065363619
