@@ -9,6 +9,8 @@ public class Cauldron : Pickup
     int red = 0;
     int blue = 0;
 
+    public AudioSource splash;
+
     private ParticleSystem particleSystem;
 
     public int Red { get { return red; } }
@@ -65,6 +67,8 @@ public class Cauldron : Pickup
                     particleSystem.Emit(20);
                     break;
             }
+
+            splash.Play();
 
             //Debug.Log(red + " " + blue);
             targetRatio = (red * 1.0f) / (red + blue);
