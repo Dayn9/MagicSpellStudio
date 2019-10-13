@@ -93,22 +93,23 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 move = Vector3.zero;
+        trueDirection = Vector3.zero;
         if (Input.GetKey(up))
         {
             move += Vector3.forward;
-            trueDirection = Vector3.forward;
+            trueDirection += Vector3.forward;
         }
         if (Input.GetKey(down)) {
             move -= Vector3.forward;
-            trueDirection = -Vector3.forward;
+            trueDirection += -Vector3.forward;
         }
         if (Input.GetKey(right)) {
             move += Vector3.right;
-            trueDirection = Vector3.right;
+            trueDirection += Vector3.right;
         }
         if (Input.GetKey(left)) {
             move -= Vector3.right;
-            trueDirection = -Vector3.right;
+            trueDirection += -Vector3.right;
         }
 
         moveDirection += move.normalized;
