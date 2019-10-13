@@ -8,6 +8,7 @@ public class LoadScenes : MonoBehaviour
     public void LoadGameScene()
     {
         SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1;
     }
 
     public void LoadMenuScene()

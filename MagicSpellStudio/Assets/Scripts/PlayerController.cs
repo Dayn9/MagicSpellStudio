@@ -93,23 +93,22 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 move = Vector3.zero;
-        trueDirection = Vector3.zero;
         if (Input.GetKey(up))
         {
             move += Vector3.forward;
-            trueDirection += Vector3.forward;
         }
         if (Input.GetKey(down)) {
             move -= Vector3.forward;
-            trueDirection += -Vector3.forward;
         }
         if (Input.GetKey(right)) {
             move += Vector3.right;
-            trueDirection += Vector3.right;
         }
         if (Input.GetKey(left)) {
             move -= Vector3.right;
-            trueDirection += -Vector3.right;
+        }
+        if(move != Vector3.zero)
+        {
+            trueDirection = move;
         }
 
         moveDirection += move.normalized;
@@ -163,7 +162,7 @@ public class PlayerController : MonoBehaviour
         {
             pickupRigidbody.isKinematic = false;
             pickupScript.Throw(trueDirection, cauldronInBounds);
-            possiblePickups.Remove(pickup);
+            //possiblePickups.Remove(pickup);
             holding = false;
             pickup = null;
 

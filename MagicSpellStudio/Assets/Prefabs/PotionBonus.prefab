@@ -41,6 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025045eeae6e4754e9648c025bf6c2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPurple: 1
   blueMat: {fileID: 8748892135801146194, guid: 43ea1028a60371744b716793b18c29ce, type: 3}
   redMat: {fileID: 8748892135801146194, guid: 4ac0b181288fab64fbc9bbadb2e694ad, type: 3}
 --- !u!1001 &2095582279561302273
