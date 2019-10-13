@@ -15,6 +15,8 @@ public class ReadyUp : MonoBehaviour
     public TextMeshProUGUI countdownText;
     private int secondsRemaining = 3;
     private WaitForSecondsRealtime wait = new WaitForSecondsRealtime(1);
+    public AudioSource readySoundP1;
+    public AudioSource readySoundP2;
 
     private void Start()
     {
@@ -27,11 +29,19 @@ public class ReadyUp : MonoBehaviour
         {
             if (Input.GetKeyDown(readyUpP1))
             {
+                if(!readyP1)
+                {
+                    readySoundP1.Play();
+                }
                 readyP1 = true;
                 readyP1Image.SetActive(true);
             }
             if (Input.GetKeyDown(readyUpP2))
             {
+                if (!readyP2)
+                {
+                    readySoundP2.Play();
+                }
                 readyP2 = true;
                 readyP2Image.SetActive(true);
             }
