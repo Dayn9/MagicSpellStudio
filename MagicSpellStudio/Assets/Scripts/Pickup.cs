@@ -23,12 +23,12 @@ public class Pickup : MonoBehaviour
     public Player PlayerType { get; set; }
     public float Mass { get { return rb.mass; } }
 
-    private void Awake()
+    public virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    public void Pick(Transform player)
+    public virtual void Pick(Transform player)
     {
         
         if (transform.parent != null)
@@ -48,7 +48,7 @@ public class Pickup : MonoBehaviour
         PickedUp = true;
     }
 
-    public void Throw(Vector3 direction, bool cauldronVisible)
+    public virtual void Throw(Vector3 direction, bool cauldronVisible)
     {
         rb.useGravity = true;
         transform.SetParent(null);
