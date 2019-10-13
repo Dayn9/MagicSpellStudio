@@ -40,7 +40,8 @@ public class Timer : MonoBehaviour
             {
                 endGameText.text = "It's a tie!";
             }
-            endGameImage.color = cauldronMat.GetColor("_Color") * 0.85f;
+            Color cauldronColor = cauldronMat.GetColor("_Color");
+            endGameImage.color = new Color(cauldronColor.r * 0.85f, cauldronColor.g * 0.85f, cauldronColor.b * 0.85f, 1);
             CancelInvoke();
         }
     }
