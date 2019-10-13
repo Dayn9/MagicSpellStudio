@@ -44,7 +44,13 @@ public class Cauldron : Pickup
     {
         if (collision.gameObject.tag.Equals("Pickup") && collision.transform.parent == null)
         {
-            Player pt = collision.gameObject.GetComponent<Pickup>().PlayerType;
+            Pickup pickupScript = collision.gameObject.GetComponent<Pickup>();
+            if(!pickupScript.FirstPickedUp && pickupScript.isPurple)
+            {
+                return;
+            }
+
+            Player pt = pickupScript.PlayerType;
 
             switch (pt)
             {

@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LoadScenes : MonoBehaviour
 {
+
     public void LoadGameScene()
     {
         SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 0;
     }
 
     public void LoadMenuScene()

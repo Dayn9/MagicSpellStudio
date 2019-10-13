@@ -22,6 +22,8 @@ public class Pickup : MonoBehaviour
 
     public Player PlayerType { get; set; }
     public float Mass { get { return rb.mass; } }
+    public bool FirstPickedUp { get; private set; }
+    public bool isPurple = false;
 
     public virtual void Awake()
     {
@@ -46,6 +48,7 @@ public class Pickup : MonoBehaviour
         toCauldron = false;
 
         PickedUp = true;
+        FirstPickedUp = true;
     }
 
     public virtual void Throw(Vector3 direction, bool cauldronVisible)
