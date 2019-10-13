@@ -77,14 +77,14 @@ public class PlayerController : MonoBehaviour
                 down = KeyCode.S;
                 right = KeyCode.D;
                 left = KeyCode.A;
-                action = KeyCode.LeftShift;
+                action = KeyCode.Space;
                 break;
             case Player.P2:
-                up = KeyCode.P;
-                down = KeyCode.Semicolon;
-                right = KeyCode.Quote;
-                left = KeyCode.L;
-                action = KeyCode.RightShift;
+                up = KeyCode.UpArrow;
+                down = KeyCode.DownArrow;
+                right = KeyCode.RightArrow;
+                left = KeyCode.LeftArrow;
+                action = KeyCode.RightControl;
                 break;
         }
     }

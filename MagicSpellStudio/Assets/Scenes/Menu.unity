@@ -1401,7 +1401,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 7c4748760cdc0b544b82e9c5fd284090, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_text: "Each player must put more of their color potion into the cauldron before
     time expires. You can move potions of either color, the cauldron itself, and steal
     items that the other player is holding.\n\n\tPlayer 1 Controls:\tPlayer 2 Controls:\n\tMovement:
-    W/A/S/D\tMovement: P/L/;/'\n\tAction: Left Shift\tAction: Right Shift"
+    W/A/S/D\tMovement: Up/Down/Left/Right\n\tAction: Space \tAction: Right Ctrl"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7cb304bca0fdaf14e852040d01e84407, type: 2}
   m_sharedMaterial: {fileID: -5516370584645993123, guid: 7cb304bca0fdaf14e852040d01e84407,
@@ -1864,10 +1864,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1369229143}
-    characterCount: 315
+    characterCount: 318
     spriteCount: 0
-    spaceCount: 56
-    wordCount: 54
+    spaceCount: 53
+    wordCount: 55
     linkCount: 0
     lineCount: 7
     pageCount: 1

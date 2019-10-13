@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 845788723823385695, guid: 729792da03dfe4242af149ce26e5da75,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 845788723823385695, guid: 729792da03dfe4242af149ce26e5da75,
         type: 3}
@@ -926,36 +926,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &567453154
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 567453155}
-  m_Layer: 0
-  m_Name: a1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &567453155
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567453154}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: 6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1257321937}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &595851950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -981,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 845788723823385695, guid: 729792da03dfe4242af149ce26e5da75,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 845788723823385695, guid: 729792da03dfe4242af149ce26e5da75,
         type: 3}
@@ -1175,7 +1145,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 7c4748760cdc0b544b82e9c5fd284090, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2194,9 +2164,8 @@ MonoBehaviour:
   spawnObject: {fileID: 7941233643326113800, guid: 7b4949ecd035a4a4a931dbd0c9493051,
     type: 3}
   possibleLocations:
-  - {fileID: 567453155}
-  - {fileID: 1378538411}
   - {fileID: 1977177381}
+  - {fileID: 1378538411}
   spawnTime: 30
   potionSpawn: {fileID: 1257321938}
 --- !u!4 &1257321937
@@ -2210,7 +2179,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 567453155}
   - {fileID: 1378538411}
   - {fileID: 1977177381}
   m_Father: {fileID: 0}
@@ -2680,7 +2648,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 7c4748760cdc0b544b82e9c5fd284090, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2816,7 +2784,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1257321937}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1418995849
 GameObject:
@@ -4363,7 +4331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1257321937}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2098143161
 GameObject:
