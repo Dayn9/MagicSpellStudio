@@ -151,9 +151,6 @@ public class PlayerController : MonoBehaviour
                 StopCoroutine(lerpCoroutine);
             }
         }
-       
-
-        
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
@@ -168,6 +165,11 @@ public class PlayerController : MonoBehaviour
             possiblePickups.Remove(pickup);
             holding = false;
             pickup = null;
+
+            if (pickupScript.GetType().Equals(typeof(Cauldron)))
+            {
+                cauldronInBounds = false;
+            }
 
             StopCoroutine(lerpCoroutine);
 
