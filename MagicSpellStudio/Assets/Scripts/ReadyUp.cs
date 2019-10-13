@@ -43,7 +43,7 @@ public class ReadyUp : MonoBehaviour
 
     private IEnumerator Countdown()
     {
-        yield return new WaitForSecondsRealtime(2.5f);
+        yield return new WaitForSecondsRealtime(2.1f);
         while(secondsRemaining > 0)
         {
             countdownText.text = secondsRemaining.ToString();
