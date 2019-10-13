@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
     private void DecreaseTimer()
     {
         secondsRemaining--;
-        timerText.text = "00:" + secondsRemaining.ToString("D2");
+        timerText.text = secondsRemaining.ToString("D2");
         if(secondsRemaining <= 0)
         {
             Time.timeScale = 0;
