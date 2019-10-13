@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    private int secondsRemaining = 30;
+    private int secondsRemaining = 45;
     public TextMeshPro timerText;
     public GameObject endGameModal;
     public Cauldron cauldron;
@@ -18,6 +18,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         InvokeRepeating("DecreaseTimer", 1, 1);
+        timerText.text = secondsRemaining.ToString();
     }
 
     private void DecreaseTimer()
