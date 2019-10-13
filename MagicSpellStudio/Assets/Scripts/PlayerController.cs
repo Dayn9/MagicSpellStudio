@@ -43,6 +43,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Mesh Mup = null;
     [SerializeField] private Mesh Mdown = null;
 
+    public AudioSource run;
+    public AudioSource throwing;
+    public AudioSource grab;
+
+    private bool moving = false;
+
     public bool Holding
     {
         set
@@ -109,6 +115,16 @@ public class PlayerController : MonoBehaviour
         if(move != Vector3.zero)
         {
             trueDirection = move;
+            if(!moving)
+            {
+                run.Play();
+                moving = true;
+            }
+        }
+        else if(moving)
+        {
+            run.Stop();
+            moving = false;
         }
 
         moveDirection += move.normalized;
@@ -174,6 +190,8 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(lerpCoroutine);
 
             model.mesh = Mdown;
+
+            throwing.Play();
         }
     }
 
@@ -214,6 +232,7 @@ public class PlayerController : MonoBehaviour
             pickupScript = pickup.GetComponent<Pickup>();
             pickupScript.Pick(transform);
             lerpCoroutine = StartCoroutine(PickupLerp());
+            grab.Play();
         }
     }
 
