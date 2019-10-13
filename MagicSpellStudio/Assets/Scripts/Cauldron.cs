@@ -8,6 +8,11 @@ public class Cauldron : Pickup
     int red = 0;
     int blue = 0;
 
+    public int Red { get { return red; } }
+    public int Blue { get { return blue; } }
+
+    public Material cauldronMat;
+
     [SerializeField] private Slider ratioSlider;
     private float targetRatio;
 
@@ -16,6 +21,7 @@ public class Cauldron : Pickup
         cauldron = this;
         ratioSlider.value = 0.5f;
         targetRatio = 0.5f;
+        cauldronMat.SetColor("_Color", Color.Lerp(Color.blue, Color.red, 0.5f));
     }
 
     private void Update()
@@ -43,6 +49,8 @@ public class Cauldron : Pickup
 
             //Debug.Log(red + " " + blue);
             targetRatio = (red * 1.0f) / (red + blue);
+
+            cauldronMat.SetColor("_Color", Color.Lerp(Color.blue, Color.red, (red * 1.0f) / (red + blue)));
 
             Destroy(collision.gameObject);
         }

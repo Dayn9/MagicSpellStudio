@@ -37,9 +37,23 @@ public class PlayerController : MonoBehaviour
     private WaitForFixedUpdate wait = new WaitForFixedUpdate();
     private Coroutine lerpCoroutine = null;
 
+    private List<GameObject> deletedObjectsToRemove = new List<GameObject>();
+
     private MeshFilter model;
     [SerializeField] private Mesh Mup = null;
     [SerializeField] private Mesh Mdown = null;
+
+    public bool Holding
+    {
+        set
+        {
+            holding = value;
+            if (!holding)
+            {
+                StopCoroutine(lerpCoroutine);
+            }
+        }
+    }
 
 
     private void Awake()
@@ -116,10 +130,29 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        moveDirection.x *= speed;
-        moveDirection.z *= speed;
+        if(holding && pickupScript != null)
+        {
+            moveDirection.x *= speed - pickupScript.Mass;
+            moveDirection.z *= speed - pickupScript.Mass;
+            moveDirection.y -= (gravity + pickupScript.Mass * 10) * Time.deltaTime;
+        }
+        else
+        {
+            moveDirection.x *= speed;
+            moveDirection.z *= speed;
+            moveDirection.y -= gravity * Time.deltaTime;
 
-        moveDirection.y -= gravity * Time.deltaTime;
+            if (pickup != null)
+            {
+                pickup = null;
+                pickupScript = null;
+                model.mesh = Mdown;
+                StopCoroutine(lerpCoroutine);
+            }
+        }
+       
+
+        
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
@@ -148,14 +181,27 @@ public class PlayerController : MonoBehaviour
 
         foreach(GameObject g in possiblePickups)
         {
-            float dist = (g.transform.position - transform.position).sqrMagnitude;
-
-            if (dist < closestDistance)
+            if(g == null)
             {
-                closest = g;
-                closestDistance = dist;
+                deletedObjectsToRemove.Add(g);
+            }
+            else
+            {
+                float dist = (g.transform.position - transform.position).sqrMagnitude;
+
+                if (dist < closestDistance)
+                {
+                    closest = g;
+                    closestDistance = dist;
+                }
             }
         }
+
+        for(int i = 0; i < deletedObjectsToRemove.Count; i++)
+        {
+            possiblePickups.Remove(deletedObjectsToRemove[i]);
+        }
+        deletedObjectsToRemove.Clear();
 
         if(closest != null)
         {
@@ -192,13 +238,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.tag.Equals("Player"))
-        {
-            hit.gameObject.GetComponent<PlayerController>().ApplyForce(moveDirection * Time.deltaTime);
-        }
-    }
     private IEnumerator PickupLerp()
     {
         lerpDeltaTime = 0;

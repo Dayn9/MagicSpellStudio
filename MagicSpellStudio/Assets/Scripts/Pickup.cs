@@ -21,6 +21,7 @@ public class Pickup : MonoBehaviour
     private WaitForFixedUpdate wait = new WaitForFixedUpdate();
 
     public Player PlayerType { get; set; }
+    public float Mass { get { return rb.mass; } }
 
     private void Awake()
     {
@@ -29,6 +30,16 @@ public class Pickup : MonoBehaviour
 
     public void Pick(Transform player)
     {
+        
+        if (transform.parent != null)
+        {
+            PlayerController currentPlayer = GetComponentInParent<PlayerController>();
+            if(currentPlayer != null)
+            {
+                currentPlayer.Holding = false;
+            }
+        }
+
         rb.useGravity = false;
         transform.SetParent(player);
 
@@ -49,7 +60,7 @@ public class Pickup : MonoBehaviour
         }
         else
         {
-            rb.AddForce(new Vector3(direction.x, 1, direction.z) * throwForce / rb.mass, ForceMode.Impulse);
+            rb.AddForce(new Vector3(direction.x, 1, direction.z) * throwForce, ForceMode.Impulse);
         }
 
         PickedUp = false;
