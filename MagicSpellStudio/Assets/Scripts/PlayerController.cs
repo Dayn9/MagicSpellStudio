@@ -83,11 +83,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ApplyForce(Vector3 force)
-    {
-        characterController.Move(force);
-    }
-
     private void Update()
     {
         moveDirection.x = Mathf.Lerp(moveDirection.x, 0, 0.9f);
@@ -95,27 +90,33 @@ public class PlayerController : MonoBehaviour
         if (characterController.isGrounded)
         {
             moveDirection.y = 0;
-        }        
+        }
 
+        Vector3 move = Vector3.zero;
         if (Input.GetKey(up))
         {
-            moveDirection += Vector3.forward;
+            move += Vector3.forward;
             trueDirection = Vector3.forward;
         }
         if (Input.GetKey(down)) {
-            moveDirection -= Vector3.forward;
+            move -= Vector3.forward;
             trueDirection = -Vector3.forward;
         }
         if (Input.GetKey(right)) {
-            moveDirection += Vector3.right;
+            move += Vector3.right;
             trueDirection = Vector3.right;
         }
         if (Input.GetKey(left)) {
-            moveDirection -= Vector3.right;
+            move -= Vector3.right;
             trueDirection = -Vector3.right;
         }
 
-        model.transform.LookAt(gameObject.transform.position + new Vector3(-moveDirection.z, 0, moveDirection.x));
+        moveDirection += move.normalized;
+
+        if(Time.timeScale != 0)
+        {
+            model.transform.LookAt(gameObject.transform.position + new Vector3(-moveDirection.z, 0, moveDirection.x));
+        }
 
         if (Input.GetKeyDown(action))
         {
