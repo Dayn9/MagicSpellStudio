@@ -28,12 +28,11 @@ public class Cauldron : Pickup
     {
         ratioSlider.value = Mathf.Lerp(ratioSlider.value, targetRatio, 0.3f);
 
-
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Pickup"))
+        if (collision.gameObject.tag.Equals("Pickup") && collision.transform.parent == null)
         {
             Player pt = collision.gameObject.GetComponent<Pickup>().PlayerType;
 
