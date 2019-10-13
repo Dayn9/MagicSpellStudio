@@ -10,6 +10,8 @@ public class SpawnBonus : MonoBehaviour
     public int spawnTime;
     private float timer;
 
+    public AudioSource potionSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class SpawnBonus : MonoBehaviour
             if (timer > spawnTime)
             {
                 Instantiate(spawnObject, possibleLocations[Random.Range(0, possibleLocations.Length)]);
+                potionSpawn.Play();
             }
         }
     }
