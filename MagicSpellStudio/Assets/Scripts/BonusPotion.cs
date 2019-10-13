@@ -8,11 +8,14 @@ public class BonusPotion : Pickup
     public Material redMat;
 
     private MeshRenderer render;
+    public ParticleSystem spawnParticles;
 
     public override void Awake()
     {
         base.Awake();
         render = GetComponent<MeshRenderer>();
+        spawnParticles.startColor = new Color(128 * 0.85f, 0, 128 * 0.85f, 1);
+        spawnParticles.Emit(20);
     }
 
     public override void Pick(Transform player)
