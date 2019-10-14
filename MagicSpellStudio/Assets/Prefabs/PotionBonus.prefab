@@ -4774,6 +4774,7 @@ MonoBehaviour:
   blueMat: {fileID: 8748892135801146194, guid: 43ea1028a60371744b716793b18c29ce, type: 3}
   redMat: {fileID: 8748892135801146194, guid: 4ac0b181288fab64fbc9bbadb2e694ad, type: 3}
   spawnParticles: {fileID: -6965938402228485527}
+  willSpawnLater: 1
 --- !u!1001 &2095582279561302273
 PrefabInstance:
   m_ObjectHideFlags: 0
