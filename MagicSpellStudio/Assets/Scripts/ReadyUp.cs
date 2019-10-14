@@ -5,8 +5,8 @@ using TMPro;
 
 public class ReadyUp : MonoBehaviour
 {
-    private KeyCode readyUpP1 = KeyCode.LeftShift;
-    private KeyCode readyUpP2 = KeyCode.RightShift;
+    private KeyCode readyUpP1 = KeyCode.Space;
+    private KeyCode readyUpP2 = KeyCode.RightControl;
     private bool readyP1 = false;
     private bool readyP2 = false;
     public Animator readyModalAnimator;
