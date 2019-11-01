@@ -1076,7 +1076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20.1}
+  m_AnchoredPosition: {x: 0, y: 7}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &689705330
@@ -1269,7 +1269,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 8.373091e-11, z: 6.96e-43, w: 8.373091e-11}
+  m_BoundingSphereOverride: {x: 4.5905e-41, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1590,7 +1590,7 @@ Transform:
   m_GameObject: {fileID: 766950075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15, y: 0, z: 2}
-  m_LocalScale: {x: 5, y: 5, z: 15}
+  m_LocalScale: {x: 5, y: 5, z: 30.834}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 29
@@ -2062,7 +2062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 18.72, z: -9.84}
+  m_LocalPosition: {x: 0, y: 20.39, z: -11.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2588,7 +2588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -93}
+  m_AnchoredPosition: {x: 0, y: -137}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1301159262
@@ -3018,7 +3018,7 @@ Transform:
   m_GameObject: {fileID: 1468558283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15, y: 0, z: 2}
-  m_LocalScale: {x: 5, y: 5, z: 15}
+  m_LocalScale: {x: 5, y: 5, z: 30.834}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -3493,7 +3493,7 @@ Transform:
   m_GameObject: {fileID: 1531914392}
   m_LocalRotation: {x: 0, y: 0, z: -0.5, w: 0.8660254}
   m_LocalPosition: {x: 9.43, y: -2.16, z: 2}
-  m_LocalScale: {x: 5, y: 10, z: 15}
+  m_LocalScale: {x: 5, y: 10, z: 30.834}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 30
@@ -3689,7 +3689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5019608, g: 0.07529411, b: 0.5019608, a: 1}
+  m_Color: {r: 0.5019608, g: 0.07529411, b: 0.5019608, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4095,7 +4095,7 @@ MonoBehaviour:
   possibleLocations:
   - {fileID: 1907705815}
   - {fileID: 661286224}
-  spawnTime: 7
+  spawnTime: 38
   potionSpawn: {fileID: 1800254078}
 --- !u!4 &1800254080
 Transform:
@@ -4539,7 +4539,7 @@ Transform:
   m_GameObject: {fileID: 1932495285}
   m_LocalRotation: {x: 0, y: 0, z: 0.5, w: 0.8660254}
   m_LocalPosition: {x: -9.43, y: -2.16, z: 2}
-  m_LocalScale: {x: 5, y: 10, z: 15}
+  m_LocalScale: {x: 5, y: 10, z: 30.834}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 27

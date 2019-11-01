@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
                 down = KeyCode.DownArrow;
                 right = KeyCode.RightArrow;
                 left = KeyCode.LeftArrow;
-                action = KeyCode.RightControl;
+                action = KeyCode.RightShift;
                 break;
         }
     }
